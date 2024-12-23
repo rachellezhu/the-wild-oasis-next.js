@@ -27,7 +27,7 @@ export default function CabinCard({ cabin }: { cabin: TCabin }) {
                 <span className="text-3xl font-[350]">
                   ${regular_price! - discount!}
                 </span>
-                <span className="line-through font-semibold text-primary-600">
+                <span className="line-through fo`nt-semibold text-primary-600">
                   ${regular_price!}
                 </span>
               </>
