@@ -1,5 +1,5 @@
-import { TSetting } from "../_types/setting-type";
-import { supabase } from "./supabase";
+import { TSetting } from "@/app/_types/setting-type";
+import { supabase } from "@/app/_lib/supabase";
 
 export async function getSettings(): Promise<TSetting> {
   const { data, error } = await supabase.from("settings").select("*").single();

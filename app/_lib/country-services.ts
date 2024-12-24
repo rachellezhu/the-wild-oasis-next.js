@@ -1,4 +1,4 @@
-import { TCountry } from "../_types/country-type";
+import { TCountry } from "@/app/_types/country-type";
 
 export async function getCountries(): Promise<TCountry[]> {
   try {

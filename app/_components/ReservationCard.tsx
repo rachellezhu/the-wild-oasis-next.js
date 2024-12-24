@@ -1,8 +1,8 @@
 import { format, isPast, isToday } from "date-fns";
-import { TBookingsByGuest } from "../_types/booking-type";
-import { formatDistanceFromNow } from "../_lib/helpers";
+import { TBookingsByGuest } from "@/app/_types/booking-type";
+import { formatDistanceFromNow } from "@/app/_lib/helpers";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
-import DeleteReservation from "./DeleteReservation";
+import DeleteReservation from "@/app/_components/DeleteReservation";
 
 export default function ReservationCard({
   booking,

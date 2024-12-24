@@ -1,5 +1,5 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
-import { TGetCabins } from "../_types/cabin-type";
+import { TGetCabins } from "@/app/_types/cabin-type";
 
 export default function CabinCard({ cabin }: { cabin: TGetCabins }) {
   const { id, name, max_capacity, regular_price, discount, image_url } = cabin;

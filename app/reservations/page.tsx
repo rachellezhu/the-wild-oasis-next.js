@@ -1,5 +1,5 @@
-import ReservationCard from "../_components/ReservationCard";
-import { getBookingsByGuestId } from "../_lib/booking-services";
+import ReservationCard from "@/app/_components/ReservationCard";
+import { getBookingsByGuestId } from "@/app/_lib/booking-services";
 
 export default async function Page() {
   const bookings = await getBookingsByGuestId(23);

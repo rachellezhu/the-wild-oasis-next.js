@@ -5,7 +5,7 @@ import {
   TBookingsByGuest,
   TBookingWithCabin,
   TNewBooking,
-} from "../_types/booking-type";
+} from "@/app/_types/booking-type";
 
 export async function getBooking(id: number): Promise<TBookingWithCabin> {
   const { data, error } = await supabase

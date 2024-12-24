@@ -1,5 +1,5 @@
-import { TCabin, TGetCabinPrice, TGetCabins } from "../_types/cabin-type";
-import { supabase } from "./supabase";
+import { TCabin, TGetCabinPrice, TGetCabins } from "@/app/_types/cabin-type";
+import { supabase } from "@/app/_lib/supabase";
 
 export async function getCabin(id: number): Promise<TCabin> {
   const { data, error } = await supabase

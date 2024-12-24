@@ -1,4 +1,4 @@
-import SelectCountry from "../_components/SelectCountry";
+import SelectCountry from "@/app/_components/SelectCountry";
 
 export default function Page() {
   const countryFlag = "pt.jpg";

@@ -1,5 +1,5 @@
-import { TGuest, TNewGuest } from "../_types/guest-type";
-import { supabase } from "./supabase";
+import { TGuest, TNewGuest } from "@/app/_types/guest-type";
+import { supabase } from "@/app/_lib/supabase";
 
 export async function getGuest(email: string): Promise<TGuest> {
   const { data, error } = await supabase

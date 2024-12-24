@@ -1,3 +1,3 @@
-import { Tables } from "./database.types";
+import { Tables } from "@/app/_types/database.types";
 
 export type TSetting = Tables<"settings">;
