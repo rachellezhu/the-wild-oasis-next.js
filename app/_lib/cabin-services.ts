@@ -16,7 +16,7 @@ export async function getCabin(id: number): Promise<TCabin> {
   return data;
 }
 
-export async function getCabins(): Promise<TGetCabins> {
+export async function getCabins(): Promise<TGetCabins[]> {
   const { data, error } = await supabase
     .from("cabins")
     .select("id, name, max_capacity, regular_price, discount, image_url")
