@@ -1,16 +1,4 @@
-import { isWithinInterval } from "date-fns";
 import { DayPicker } from "react-day-picker";
-
-function isAlreadyBooked(
-  range: { from: number | null; to: number | null },
-  datesArr: Date[]
-): boolean {
-  if (range.from === null || range.to === null) return false;
-
-  return datesArr.some((date) =>
-    isWithinInterval(date, { start: range.from!, end: range.to! })
-  );
-}
 
 export default function DateSelector() {
   const regularPrice = 23;
@@ -46,7 +34,7 @@ export default function DateSelector() {
             ) : (
               <span className="text-2xl">${regularPrice}</span>
             )}
-            <span>/night</span>
+            <span>/ night</span>
           </p>
 
           {numNights ? (
