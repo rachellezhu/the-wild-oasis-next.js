@@ -1,3 +1,9 @@
+import SpinnerMini from "@/app/_components/SpinnerMini";
+
 export default function Loading() {
-  return <p>LOADING DATA...</p>;
+  return (
+    <div>
+      <SpinnerMini />
+    </div>
+  );
 }

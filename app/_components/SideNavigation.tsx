@@ -4,6 +4,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import SignOutButton from "@/app/_components/SignOutButton";
+import Link from "next/link";
 
 const navLinks = [
   {
@@ -29,17 +30,17 @@ export default function SideNavigation() {
       <ul className="flex flex-col gap-2 h-full text-lg">
         {navLinks.map((link) => (
           <li key={link.name}>
-            <a
+            <Link
               href={link.href}
               className="py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 "
             >
               {link.icon}
               <span>{link.name}</span>
-            </a>
+            </Link>
           </li>
         ))}
 
-        <li className="mx-auto">
+        <li className="mt-auto">
           <SignOutButton />
         </li>
       </ul>

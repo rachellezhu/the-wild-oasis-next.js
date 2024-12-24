@@ -1,12 +1,14 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { TGetCabins } from "@/app/_types/cabin-type";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function CabinCard({ cabin }: { cabin: TGetCabins }) {
   const { id, name, max_capacity, regular_price, discount, image_url } = cabin;
 
   return (
     <div className="flex border-primary-800 border">
-      <img src={image_url!} alt={`Cabin ${name}`} />
+      <Image src={image_url!} alt={`Cabin ${name}`} />
 
       <div className="flex-grow">
         <div className="pt-5 pb-4 px7 bg-primary-950">
@@ -39,12 +41,12 @@ export default function CabinCard({ cabin }: { cabin: TGetCabins }) {
         </div>
 
         <div className="bg-primary-950 border-t border-t-primary-800 text-right">
-          <a
+          <Link
             href={`/cabins/${id}`}
             className="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900"
           >
             Details & reservation &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </div>

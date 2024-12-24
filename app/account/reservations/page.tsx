@@ -1,5 +1,10 @@
 import ReservationCard from "@/app/_components/ReservationCard";
 import { getBookingsByGuestId } from "@/app/_lib/booking-services";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Reservations",
+};
 
 export default async function Page() {
   const bookings = await getBookingsByGuestId(23);
@@ -10,12 +15,12 @@ export default async function Page() {
         Your reservations
       </h2>
 
-      {bookings.data.length === 0 ? (
+      {bookings.data === null || bookings.data.length === 0 ? (
         <p className="text-lg">
           You have no reservations yet. Check out our&nbsp;
-          <a className="underline textacc500" href="/cabins">
+          <Link className="underline text-accent-500" href="/cabins">
             luxury cabin &rarr;
-          </a>
+          </Link>
         </p>
       ) : (
         <ul className="space-y-6">

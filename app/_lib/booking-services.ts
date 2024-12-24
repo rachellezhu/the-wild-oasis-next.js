@@ -37,7 +37,7 @@ export async function getBookingsByGuestId(
 
   if (error) {
     console.error(error.message);
-    throw new Error("Bookings could not get loaded");
+    // throw new Error("Bookings could not get loaded");
   }
 
   return { data, count };
