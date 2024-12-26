@@ -8,10 +8,18 @@ export default function CabinCard({ cabin }: { cabin: TGetCabins }) {
 
   return (
     <div className="flex border-primary-800 border">
-      <Image src={image_url!} alt={`Cabin ${name}`} />
+      <div className="flex-1 relative border-r border-primary-800 w-full aspect-square">
+        <Image
+          src={image_url!.toString()}
+          fill
+          sizes="(max-width: 366px)"
+          alt={`Cabin ${name}`}
+          style={{ objectFit: "cover" }}
+        />
+      </div>
 
       <div className="flex-grow">
-        <div className="pt-5 pb-4 px7 bg-primary-950">
+        <div className="pt-5 pb-4 px-7 bg-primary-950">
           <h3 className="text-accent-500 font-semibold text-2xl mb-3">
             Cabin{name}
           </h3>
