@@ -14,7 +14,7 @@ export default function CabinCard({ cabin }: { cabin: TGetCabins }) {
           fill
           sizes="(max-width: 366px)"
           alt={`Cabin ${name}`}
-          style={{ objectFit: "cover" }}
+          className="object-cover"
         />
       </div>
 

@@ -8,8 +8,6 @@ export const metadata = {
 export default async function Page() {
   const cabins = await getCabins();
 
-  console.log(cabins);
-
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -26,7 +24,7 @@ export default async function Page() {
 
       {cabins.length > 0 && (
         <div
-          className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xlgap14
+          className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14
         "
         >
           {cabins.map((cabin) => (
