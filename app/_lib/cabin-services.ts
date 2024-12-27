@@ -1,5 +1,6 @@
 import { TCabin, TGetCabinPrice, TGetCabins } from "@/app/_types/cabin-type";
 import { supabase } from "@/app/_lib/supabase";
+import { notFound } from "next/navigation";
 
 export async function getCabin(id: number): Promise<TCabin> {
   const { data, error } = await supabase
@@ -10,7 +11,7 @@ export async function getCabin(id: number): Promise<TCabin> {
 
   if (error) {
     console.error(error.message);
-    throw new Error("Cabin not found");
+    notFound();
   }
 
   return data;
