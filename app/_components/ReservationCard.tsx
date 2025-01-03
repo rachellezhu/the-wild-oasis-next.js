@@ -11,13 +11,13 @@ export default function ReservationCard({
 }) {
   const {
     id,
-    guest_id,
+    // guest_id,
     start_date,
     end_date,
     num_nights,
     num_guests,
     total_price,
-    status,
+    // status,
     created_at,
     cabins: { name, image_url },
   } = booking;

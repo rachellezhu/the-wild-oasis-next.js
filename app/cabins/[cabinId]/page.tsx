@@ -13,7 +13,7 @@ export async function generateMetadata({
   return { title: `Cabin ${name}` };
 }
 
-export async function generatedStaticParams() {
+export async function generateStaticParams() {
   const cabins = await getCabins();
 
   return cabins.map((cabin) => ({
