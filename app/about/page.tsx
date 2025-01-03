@@ -4,8 +4,6 @@ import about1 from "@/public/about-1.jpg";
 import about2 from "@/public/about-2.jpg";
 import { countCabins } from "@/app/_lib/cabin-services";
 
-// export const dynamic = "force-dynamic";
-
 export const revalidate = 86400;
 
 export const metadata = {
