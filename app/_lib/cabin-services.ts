@@ -45,3 +45,19 @@ export async function getCabinPrice(id: number): Promise<TGetCabinPrice> {
 
   return data;
 }
+
+export async function countCabins(): Promise<number> {
+  const { count, error } = await supabase
+    .from("cabins")
+    .select("*", { count: "exact" });
+  const data = count || 0;
+
+  console.log(data);
+
+  if (error) {
+    console.error(error.message);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
