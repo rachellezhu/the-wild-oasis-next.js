@@ -7,7 +7,7 @@ export default function FilterButton({
   filter: "all" | "small" | "medium" | "large";
   handleFilter: () => void;
   activeFilter: string;
-  children: string | React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <button
