@@ -15,7 +15,7 @@ export default async function Page() {
         Your reservations
       </h2>
 
-      {bookings.data === null || bookings.data.length === 0 ? (
+      {bookings.data === null || !bookings.data.length ? (
         <p className="text-lg">
           You have no reservations yet. Check out our&nbsp;
           <Link className="underline text-accent-500" href="/cabins">

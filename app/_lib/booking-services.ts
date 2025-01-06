@@ -26,7 +26,7 @@ export async function getBooking(id: number): Promise<TBookingWithCabin> {
 
 export async function getBookingsByGuestId(
   guestId: number
-): Promise<{ data: TBookingsByGuest[]; count: number | null }> {
+): Promise<{ data: TBookingsByGuest[] | null; count: number | null }> {
   const { data, error, count } = await supabase
     .from("bookings")
     .select(
@@ -38,7 +38,6 @@ export async function getBookingsByGuestId(
 
   if (error) {
     console.error(error.message);
-    notFound();
   }
 
   return { data, count };

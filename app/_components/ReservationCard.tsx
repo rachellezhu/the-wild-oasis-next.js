@@ -3,6 +3,7 @@ import { TBookingsByGuest } from "@/app/_types/booking-type";
 import { formatDistanceFromNow } from "@/app/_lib/helpers";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import DeleteReservation from "@/app/_components/DeleteReservation";
+import Image from "next/image";
 
 export default function ReservationCard({
   booking,
@@ -25,8 +26,9 @@ export default function ReservationCard({
   return (
     <div className="flex border border-primary-800">
       <div className="relative h-32 aspect-square">
-        <img
+        <Image
           src={image_url!}
+          fill
           alt={`Cabin ${name}`}
           className="object-cover border-r border-primary-800"
         />
