@@ -1,4 +1,14 @@
+"use client";
+
+// import { TCabin } from "@/app/_types/cabin-type";
 import { DayPicker } from "react-day-picker";
+import "react-day-picker/style.css";
+
+// type TDateSelectorProps = {
+//   settings: { minBookingLength: number; maxBookingLength: number };
+//   cabin: TCabin;
+//   bookedDates: Date[];
+// };
 
 export default function DateSelector() {
   const regularPrice = 23;
@@ -34,13 +44,13 @@ export default function DateSelector() {
             ) : (
               <span className="text-2xl">${regularPrice}</span>
             )}
-            <span>/ night</span>
+            <span>/night</span>
           </p>
 
           {numNights ? (
             <>
               <p className="bg-accent-600 px-3 py-2 text-2xl">
-                <span>&times;</span> <span>{numNights}</span>
+                <span>&times;</span>&nbsp;<span>{numNights}</span>
               </p>
               <p>
                 <span className="text-lg font-bold uppercase">Total</span>

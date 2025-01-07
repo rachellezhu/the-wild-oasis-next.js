@@ -23,7 +23,7 @@ export default function ReservationForm() {
           <select
             name="num-guests"
             id="num-guests"
-            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm roundedsm"
+            className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           >
             <option value="" key="">
               Select number of guests...
