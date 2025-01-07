@@ -52,8 +52,6 @@ export async function countCabins(): Promise<number> {
     .select("*", { count: "exact" });
   const data = count || 0;
 
-  console.log(data);
-
   if (error) {
     console.error(error.message);
     throw new Error(error.message);

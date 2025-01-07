@@ -13,8 +13,6 @@ export const metadata = {
 export default async function Page() {
   const count = await countCabins();
 
-  console.log(count);
-
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
       <div className="col-span-3">

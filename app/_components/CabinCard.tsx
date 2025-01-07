@@ -7,7 +7,7 @@ export default function CabinCard({ cabin }: { cabin: TGetCabins }) {
   const { id, name, max_capacity, regular_price, discount, image_url } = cabin;
 
   return (
-    <div className="flex border-primary-800 border">
+    <div className="flex border border-primary-800">
       <div className="flex-1 relative border-r border-primary-800 w-full">
         <Image
           src={image_url!.toString()}

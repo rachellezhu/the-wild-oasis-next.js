@@ -36,6 +36,7 @@
   --rdp-day-width: 32px !important;
   --rdp-day_button-height: 32px !important;
   --rdp-day_button-width: 32px !important;
+  --rdp-weekday-text-align: center !important;
   --rdp-accent-color: theme("colors.accent.500") !important;
   --rdp-accent-background-color: theme("colors.accent.600") !important;
   margin: 0 !important;
