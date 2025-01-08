@@ -1,5 +1,7 @@
-export default function ReservationForm() {
-  const maxCapacity = 23;
+import { TCabin } from "@/app/_types/cabin-type";
+
+export default function ReservationForm({ cabin }: { cabin: TCabin }) {
+  const { max_capacity } = cabin;
 
   return (
     <div className="scale-[1.01]">
@@ -28,7 +30,7 @@ export default function ReservationForm() {
             <option value="" key="">
               Select number of guests...
             </option>
-            {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((x) => (
+            {Array.from({ length: max_capacity! }, (_, i) => i + 1).map((x) => (
               <option value={x} key={x}>
                 {x} {x === 1 ? "guest" : "guests"}
               </option>

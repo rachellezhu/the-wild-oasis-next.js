@@ -1,31 +1,34 @@
 "use client";
 
-// import { TCabin } from "@/app/_types/cabin-type";
+import { TCabin } from "@/app/_types/cabin-type";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { Tables } from "@/app/_types/database.types";
 
-// type TDateSelectorProps = {
-//   settings: { minBookingLength: number; maxBookingLength: number };
-//   cabin: TCabin;
-//   bookedDates: Date[];
-// };
+type TDateSelectorProps = {
+  settings: Tables<"settings">;
+  cabin: TCabin;
+  bookedDates: Date[];
+};
 
-export default function DateSelector() {
-  const regularPrice = 23;
-  const discount = 23;
-  const numNights = 23;
-  const cabinPrice = 23;
+export default function DateSelector({
+  settings,
+  bookedDates,
+  cabin,
+}: TDateSelectorProps) {
   const range = { from: null, to: null };
-  const minBookingLength = 1;
-  const maxBookingLength = 23;
+  const { regular_price, discount } = cabin;
+  const { min_booking_length, max_booking_length } = settings;
+  const num_nights = 23;
+  const cabin_price = regular_price! - discount!;
 
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
         className="pt-12 place-self-center"
         mode="range"
-        min={minBookingLength + 1}
-        max={maxBookingLength}
+        min={min_booking_length! + 1}
+        max={max_booking_length!}
         startMonth={new Date()}
         captionLayout="dropdown"
         numberOfMonths={2}
@@ -34,27 +37,27 @@ export default function DateSelector() {
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
         <div className="flex items-baseline gap-6">
           <p className="flex gap-2 items-baseline">
-            {discount > 0 ? (
+            {discount !== null && discount > 0 ? (
               <>
-                <span className="text-2xl">${regularPrice - discount}</span>
+                <span className="text-2xl">${regular_price! - discount}</span>
                 <span className="line-through font-semibold text-primary-700">
-                  ${regularPrice}
+                  ${regular_price}
                 </span>
               </>
             ) : (
-              <span className="text-2xl">${regularPrice}</span>
+              <span className="text-2xl">${regular_price}</span>
             )}
             <span>/night</span>
           </p>
 
-          {numNights ? (
+          {num_nights ? (
             <>
-              <p className="bg-accent-600 px-3 py-2 text-2xl">
-                <span>&times;</span>&nbsp;<span>{numNights}</span>
+              <p className="bg-accent-600 px-3 py-3 text-2xl">
+                <span>&times;</span>&nbsp;<span>{num_nights}</span>
               </p>
               <p>
                 <span className="text-lg font-bold uppercase">Total</span>
-                <span className="text-2xl font-semibold">${cabinPrice}</span>
+                <span className="text-2xl font-semibold">${cabin_price}</span>
               </p>
             </>
           ) : null}
