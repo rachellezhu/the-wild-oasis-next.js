@@ -4,6 +4,7 @@ import { TCabin } from "@/app/_types/cabin-type";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { Tables } from "@/app/_types/database.types";
+import { useReservation } from "@/app/_hooks/useReservation";
 
 type TDateSelectorProps = {
   settings: Tables<"settings">;
@@ -16,17 +17,21 @@ export default function DateSelector({
   bookedDates,
   cabin,
 }: TDateSelectorProps) {
-  const range = { from: null, to: null };
+  const { range, setRange, resetRange } = useReservation();
   const { regular_price, discount } = cabin;
   const { min_booking_length, max_booking_length } = settings;
   const num_nights = 23;
   const cabin_price = regular_price! - discount!;
+
+  console.log(bookedDates)
 
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
         className="pt-12 place-self-center"
         mode="range"
+        selected={range}
+        onSelect={(range) => setRange(range)}
         min={min_booking_length! + 1}
         max={max_booking_length!}
         startMonth={new Date()}
@@ -57,14 +62,20 @@ export default function DateSelector({
               </p>
               <p>
                 <span className="text-lg font-bold uppercase">Total</span>
-                <span className="text-2xl font-semibold">${cabin_price}</span>
+                &nbsp;
+                <span className="text-2xl font-semibold">
+                  ${cabin_price! * num_nights}
+                </span>
               </p>
             </>
           ) : null}
         </div>
 
-        {range.from || range.to ? (
-          <button className="border border-primary-800 py-2 px-4 text-sm font-semibold">
+        {range && (range.from || range.to) ? (
+          <button
+            className="border border-primary-800 py-2 px-4 text-sm font-semibold"
+            onClick={resetRange}
+          >
             Clear
           </button>
         ) : null}

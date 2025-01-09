@@ -1,3 +1,5 @@
+"use client";
+
 import { TCabin } from "@/app/_types/cabin-type";
 
 export default function ReservationForm({ cabin }: { cabin: TCabin }) {
