@@ -8,7 +8,9 @@ export default function Page() {
       <a
         href="/account/reservations"
         className="underline text-xl text-accent-500 inline-block"
-      ></a>
+      >
+        Manage your reservations &rarr;
+      </a>
     </div>
   );
 }

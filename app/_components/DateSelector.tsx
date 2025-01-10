@@ -23,7 +23,7 @@ export default function DateSelector({
   const num_nights = 23;
   const cabin_price = regular_price! - discount!;
 
-  console.log(bookedDates)
+  console.log(bookedDates);
 
   return (
     <div className="flex flex-col justify-between">

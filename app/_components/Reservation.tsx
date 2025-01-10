@@ -3,12 +3,15 @@ import ReservationForm from "@/app/_components/ReservationForm";
 import { getSettings } from "@/app/_lib/setting-services";
 import { getBookedDatesByCabinId } from "@/app/_lib/booking-services";
 import { TCabin } from "@/app/_types/cabin-type";
+import { auth } from "@/app/_lib/auth";
+import LoginMessage from "@/app/_components/LoginMessage";
 
 export default async function Reservation({ cabin }: { cabin: TCabin }) {
   const [settings, bookedDates] = await Promise.all([
     getSettings(),
     getBookedDatesByCabinId(cabin.id),
   ]);
+  const session = await auth();
 
   return (
     <div>
@@ -18,7 +21,11 @@ export default async function Reservation({ cabin }: { cabin: TCabin }) {
           bookedDates={bookedDates}
           cabin={cabin}
         />
-        <ReservationForm cabin={cabin} />
+        {session?.user ? (
+          <ReservationForm cabin={cabin} user={session.user} />
+        ) : (
+          <LoginMessage />
+        )}
       </div>
     </div>
   );

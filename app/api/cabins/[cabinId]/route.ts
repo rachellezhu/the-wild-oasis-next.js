@@ -1,11 +1,12 @@
 import { getBookedDatesByCabinId } from "@/app/_lib/booking-services";
 import { getCabin } from "@/app/_lib/cabin-services";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { cabinId: string } },
+  request: NextRequest,
+  { params }: { params: Promise<{ cabinId: string }> }
 ) {
-  const { cabinId } = params;
+  const { cabinId } = await params;
 
   console.log(request);
 
