@@ -1,17 +1,12 @@
 import { TGuest, TNewGuest } from "@/app/_types/guest-type";
 import { supabase } from "@/app/_lib/supabase";
 
-export async function getGuest(email: string): Promise<TGuest> {
-  const { data, error } = await supabase
+export async function getGuest(email: string): Promise<TGuest | null> {
+  const { data } = await supabase
     .from("guests")
     .select("*")
     .eq("email", email)
     .single();
-
-  if (error) {
-    console.error(error.message);
-    throw new Error(error.message);
-  }
 
   return data;
 }
