@@ -1,16 +1,24 @@
 "use client";
 
+import { updateGuestProfile } from "@/app/_lib/actions";
+import { TGuest } from "@/app/_types/guest-type";
 import Image from "next/image";
 
 export default function UpdateProfileForm({
   children,
+  guest,
 }: {
   children: React.ReactNode;
+  guest: TGuest;
 }) {
   const countryFlag = "https://flagcdn.com/id.svg";
+  const { full_name, email, national_id, nationality, country_flag } = guest;
 
   return (
-    <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+    <form
+      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      action={updateGuestProfile}
+    >
       <div className="space-y-2">
         <label htmlFor="full-name">Full name</label>
         <input
@@ -19,6 +27,7 @@ export default function UpdateProfileForm({
           id="full-name"
           name="full-name"
           disabled
+          defaultValue={full_name || ""}
         />
       </div>
 
@@ -29,6 +38,7 @@ export default function UpdateProfileForm({
           type="email"
           id="email"
           name="email"
+          defaultValue={email || ""}
           disabled
         />
       </div>
@@ -55,7 +65,7 @@ export default function UpdateProfileForm({
           type="text"
           id="national-id"
           name="national-id"
-          disabled
+          defaultValue={national_id || ""}
         />
       </div>
 
