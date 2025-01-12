@@ -2,6 +2,8 @@
 
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { updateGuest } from "./guest-services";
+import { revalidatePath } from "next/cache";
+import { useParams, usePathname } from "next/navigation";
 
 export async function updateGuestProfile(formData: FormData) {
   console.log(formData);
@@ -25,6 +27,8 @@ export async function updateGuestProfile(formData: FormData) {
     country_flag: countryFlag,
     national_id: nationalId,
   });
+
+  return revalidatePath("/account/profile");
 }
 
 export async function signInAction() {

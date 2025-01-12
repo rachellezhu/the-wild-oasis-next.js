@@ -1,7 +1,7 @@
 "use client";
 
 import { TCabin } from "@/app/_types/cabin-type";
-import { DayPicker } from "react-day-picker";
+import { DayPicker, Nav, NavProps, UI } from "react-day-picker";
 import "react-day-picker/style.css";
 import { Tables } from "@/app/_types/database.types";
 import { useReservation } from "@/app/_hooks/useReservation";
@@ -28,7 +28,7 @@ export default function DateSelector({
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
-        className="pt-12 place-self-center"
+        className="p-8 place-self-center"
         mode="range"
         selected={range}
         onSelect={(range) => setRange(range)}
