@@ -5,7 +5,7 @@ export default function LoginMessage() {
     <div className="grid bg-primary-800">
       <p className="text-center text-xl py-12 self-center">
         Please&nbsp;
-        <Link href="/login" className="underline text-accent-500">
+        <Link href="/account" className="underline text-accent-500">
           login
         </Link>
         &nbsp;to reserve this

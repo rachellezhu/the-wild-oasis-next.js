@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const nationality = "indonesia";
+  // const nationality = "indonesia";
   const session = await auth();
   const guest = await getGuest(session!.user!.email!);
 
@@ -28,7 +28,7 @@ export default async function Page() {
           name="nationality"
           id="nationality"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-          defaultCountry={nationality}
+          defaultCountry={guest?.nationality || ""}
         />
       </UpdateProfileForm>
     </div>
