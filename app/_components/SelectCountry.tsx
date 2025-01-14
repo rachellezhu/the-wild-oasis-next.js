@@ -24,11 +24,7 @@ export default async function SelectCountry({
     >
       <option value="">Select country...</option>
       {countries.map((country) => (
-        <option
-          key={country.name}
-          value={`${country.name}%${country.flag}`}
-          defaultValue={defaultCountry}
-        >
+        <option key={country.name} value={`${country.name}%${country.flag}`}>
           {country.name}
         </option>
       ))}

@@ -11,8 +11,7 @@ export default function UpdateProfileForm({
   children: React.ReactNode;
   guest: TGuest;
 }) {
-  const countryFlag = "https://flagcdn.com/id.svg";
-  const { full_name, email, national_id, nationality, country_flag } = guest;
+  const { full_name, email, national_id, country_flag } = guest;
 
   return (
     <form
@@ -47,7 +46,7 @@ export default function UpdateProfileForm({
         <div className="flex items-center justify-between">
           <label htmlFor="nationality">Where are you from?</label>
           <Image
-            src={countryFlag}
+            src={country_flag || ""}
             alt="Country flag"
             className="h-5 rounded-sm"
             width="30"
