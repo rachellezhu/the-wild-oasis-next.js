@@ -1,4 +1,5 @@
 import ReservationCard from "@/app/_components/ReservationCard";
+import { auth } from "@/app/_lib/auth";
 import { getBookingsByGuestId } from "@/app/_lib/booking-services";
 import Link from "next/link";
 
@@ -7,7 +8,8 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const bookings = await getBookingsByGuestId(23);
+  const session = await auth();
+  const bookings = await getBookingsByGuestId(session!.user!.guestId);
 
   return (
     <div>

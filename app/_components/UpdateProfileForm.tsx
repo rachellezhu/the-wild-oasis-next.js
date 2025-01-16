@@ -1,5 +1,6 @@
 "use client";
 
+import UpdateProfileButton from "@/app/_components/UpdateProfileButton";
 import { updateGuestProfile } from "@/app/_lib/actions";
 import { TGuest } from "@/app/_types/guest-type";
 import Image from "next/image";
@@ -15,8 +16,8 @@ export default function UpdateProfileForm({
 
   return (
     <form
-      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
       action={updateGuestProfile}
+      className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
     >
       <div className="space-y-2">
         <label htmlFor="full-name">Full name</label>
@@ -69,9 +70,7 @@ export default function UpdateProfileForm({
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-          Update profile
-        </button>
+        <UpdateProfileButton />
       </div>
     </form>
   );

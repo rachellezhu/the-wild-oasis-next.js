@@ -1,7 +1,7 @@
 "use client";
 
 import { TCabin } from "@/app/_types/cabin-type";
-import { DayPicker, Nav, NavProps, UI } from "react-day-picker";
+import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { Tables } from "@/app/_types/database.types";
 import { useReservation } from "@/app/_hooks/useReservation";
