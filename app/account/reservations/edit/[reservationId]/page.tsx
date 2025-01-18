@@ -1,6 +1,27 @@
-export default function Page() {
-  const reservationId = 23;
-  const maxCapacity = 23;
+import UpdateButton from "@/app/_components/UpdateButton";
+import { updateReservation } from "@/app/_lib/actions";
+import { getBooking } from "@/app/_lib/booking-services";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ reservationId: string }>;
+}) {
+  const reservationId = (await params).reservationId;
+
+  return {
+    title: `Edit Reservation #${reservationId}`,
+  };
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ reservationId: string }>;
+}) {
+  const reservationId = (await params).reservationId;
+  const booking = await getBooking(Number(reservationId));
+  const maxCapacity = booking.cabins.max_capacity || 0;
 
   return (
     <div>
@@ -9,15 +30,22 @@ export default function Page() {
       </h2>
 
       <form
-        action=""
+        action={updateReservation}
         className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
       >
+        <input
+          type="hidden"
+          name="reservation-id"
+          id="reservation-id"
+          defaultValue={reservationId}
+        />
         <div className="space-y-2">
           <label htmlFor="num-guests">How many guests?</label>
           <select
             name="num-guests"
             id="num-guests"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+            defaultValue={booking.num_guests || ""}
             required
           >
             <option value="" key="">
@@ -39,13 +67,12 @@ export default function Page() {
             id="observations"
             name="observations"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+            defaultValue={booking.observations || ""}
           />
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Update reservation
-          </button>
+          <UpdateButton>Update reservation</UpdateButton>
         </div>
       </form>
     </div>

@@ -5,7 +5,9 @@ import {
   TBookingsByGuest,
   TBookingWithCabin,
   TNewBooking,
+  TUpdateBookingFields,
 } from "@/app/_types/booking-type";
+import { Tables } from "@/app/_types/database.types";
 
 export async function getBooking(id: number): Promise<TBookingWithCabin> {
   const { data, error } = await supabase
@@ -84,6 +86,25 @@ export async function createBooking(
   if (error) {
     console.error(error.message);
     throw new Error("Booking could not be created");
+  }
+
+  return data;
+}
+
+export async function updateBooking(
+  id: number,
+  updatedFields: TUpdateBookingFields
+): Promise<Tables<"bookings">> {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update(updatedFields)
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error.message);
+    throw new Error("Reservation could not be deleted");
   }
 
   return data;

@@ -3,7 +3,12 @@
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { updateGuest } from "./guest-services";
 import { revalidatePath } from "next/cache";
-import { deleteBooking, getBooking } from "@/app/_lib/booking-services";
+import {
+  deleteBooking,
+  getBooking,
+  updateBooking,
+} from "@/app/_lib/booking-services";
+import { redirect } from "next/navigation";
 
 export async function updateGuestProfile(formData: FormData) {
   const session = await auth();
@@ -31,6 +36,36 @@ export async function updateGuestProfile(formData: FormData) {
   if (updatedGuest) revalidatePath("/account/profile");
 }
 
+export async function updateReservation(formData: FormData) {
+  const session = await auth();
+
+  if (!session) throw new Error("You must be logged in");
+
+  const bookingId = Number(formData.get("reservation-id"));
+  const numGuests = Number(formData.get("num-guests"));
+  const observations = formData.get("observations")?.toString() || "";
+
+  const checkedBooking = await getBooking(bookingId);
+
+  if (checkedBooking.guest_id !== session?.user?.guestId)
+    throw new Error("You are not allowed to update this reservation");
+
+  if (!bookingId) throw new Error("The reservation could not be found");
+
+  if (!numGuests) throw new Error("Please let us know how many guests");
+
+  const updatedBooking = await updateBooking(bookingId, {
+    num_guests: numGuests,
+    observations: observations,
+  });
+
+  if (updatedBooking) {
+    revalidatePath(`/account/reservations/${bookingId}`);
+    revalidatePath("/account/reservations");
+    redirect("/account/reservations");
+  }
+}
+
 export async function deleteReservation(bookingId: number) {
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
@@ -42,7 +77,7 @@ export async function deleteReservation(bookingId: number) {
 
   const deletedBooking = await deleteBooking(bookingId);
 
-  if (deletedBooking) revalidatePath("/profile/reservations");
+  if (deletedBooking) revalidatePath("/account/reservations");
 }
 
 export async function signInAction() {

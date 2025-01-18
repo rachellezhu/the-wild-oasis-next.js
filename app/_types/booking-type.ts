@@ -9,7 +9,7 @@ export enum Status {
 }
 
 export type TBookingWithCabin = Omit<Tables<"bookings">, "status"> & {
-  cabins: Pick<Tables<"cabins">, "name" | "image_url">;
+  cabins: Pick<Tables<"cabins">, "name" | "image_url" | "max_capacity">;
   status: Status;
 };
 
@@ -28,4 +28,11 @@ export type TBookingsByGuest = Pick<
   | "cabin_id"
 > & {
   cabins: Pick<Tables<"cabins">, "name" | "image_url">;
+};
+
+export type TUpdateBookingFields = {
+  [Property in keyof Tables<"bookings"> as Exclude<
+    Property,
+    "id" | "created_at"
+  >]?: Tables<"bookings">[Property];
 };
