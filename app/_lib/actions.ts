@@ -10,10 +10,18 @@ import {
 } from "@/app/_lib/booking-services";
 import { redirect } from "next/navigation";
 
-export async function updateGuestProfile(formData: FormData) {
+const regexNationalId = /^[a-zA-Z0-9]{6,16}$/;
+
+async function checkAuth() {
   const session = await auth();
 
   if (!session) throw new Error("You must be logged in");
+
+  return session;
+}
+
+export async function updateGuestProfile(formData: FormData) {
+  const session = await checkAuth();
 
   const nationalProp = formData.get("nationality")?.toString().split("%");
   const nationality =
@@ -21,8 +29,6 @@ export async function updateGuestProfile(formData: FormData) {
   const countryFlag =
     nationalProp && nationalProp.length == 2 ? nationalProp.at(1) : "";
   const nationalId = formData.get("national-id")?.toString() ?? "";
-
-  const regexNationalId = /^[a-zA-Z0-9]{6,16}$/;
 
   if (!regexNationalId.test(nationalId))
     throw new Error("Please provide a valid national ID");
@@ -37,9 +43,7 @@ export async function updateGuestProfile(formData: FormData) {
 }
 
 export async function updateReservation(formData: FormData) {
-  const session = await auth();
-
-  if (!session) throw new Error("You must be logged in");
+  const session = await checkAuth();
 
   const bookingId = Number(formData.get("reservation-id"));
   const numGuests = Number(formData.get("num-guests"));
@@ -67,8 +71,9 @@ export async function updateReservation(formData: FormData) {
 }
 
 export async function deleteReservation(bookingId: number) {
-  const session = await auth();
-  if (!session) throw new Error("You must be logged in");
+  // await new Promise((res) => setTimeout(res, 5000));
+
+  const session = await checkAuth();
 
   const checkedBooking = await getBooking(bookingId);
 

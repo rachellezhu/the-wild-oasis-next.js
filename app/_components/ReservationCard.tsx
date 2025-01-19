@@ -8,8 +8,10 @@ import Link from "next/link";
 
 export default function ReservationCard({
   booking,
+  onDelete,
 }: {
   booking: TBookingsByGuest;
+  onDelete: (bookingId: number) => void;
 }) {
   const {
     id,
@@ -89,7 +91,7 @@ export default function ReservationCard({
               <span className="mt-1">Edit</span>
             </Link>
 
-            <DeleteReservation bookingId={id} />
+            <DeleteReservation bookingId={id} onDelete={onDelete} />
           </>
         )}
       </div>
