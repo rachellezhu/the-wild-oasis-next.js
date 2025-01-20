@@ -5,6 +5,8 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { Tables } from "@/app/_types/database.types";
 import { useReservation } from "@/app/_hooks/useReservation";
+import { differenceInDays } from "date-fns";
+import { isAlreadyBooked } from "@/app/_lib/helpers";
 
 type TDateSelectorProps = {
   settings: Tables<"settings">;
@@ -20,23 +22,35 @@ export default function DateSelector({
   const { range, setRange, resetRange } = useReservation();
   const { regular_price, discount } = cabin;
   const { min_booking_length, max_booking_length } = settings;
-  const num_nights = 23;
-  const cabin_price = regular_price! - discount!;
-
-  console.log(bookedDates);
+  const displayRange = isAlreadyBooked(
+    { from: range?.from, to: range?.to },
+    bookedDates
+  )
+    ? undefined
+    : range;
+  const numNights =
+    !displayRange || !displayRange.from
+      ? 0
+      : differenceInDays(
+          displayRange.to || displayRange.from,
+          displayRange.from
+        );
+  const cabinPrice = numNights * (regular_price! - discount!);
 
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
         className="p-8 place-self-center"
         mode="range"
-        selected={range}
+        selected={displayRange}
         onSelect={(range) => setRange(range)}
-        min={min_booking_length! + 1}
+        min={min_booking_length!}
         max={max_booking_length!}
         startMonth={new Date()}
         captionLayout="dropdown"
         numberOfMonths={2}
+        disabled={[...bookedDates, { before: new Date() }]}
+        excludeDisabled
       />
 
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
@@ -55,23 +69,21 @@ export default function DateSelector({
             <span>/night</span>
           </p>
 
-          {num_nights ? (
+          {numNights ? (
             <>
               <p className="bg-accent-600 px-3 py-3 text-2xl">
-                <span>&times;</span>&nbsp;<span>{num_nights}</span>
+                <span>&times;</span>&nbsp;<span>{numNights}</span>
               </p>
               <p>
                 <span className="text-lg font-bold uppercase">Total</span>
                 &nbsp;
-                <span className="text-2xl font-semibold">
-                  ${cabin_price! * num_nights}
-                </span>
+                <span className="text-2xl font-semibold">${cabinPrice}</span>
               </p>
             </>
           ) : null}
         </div>
 
-        {range && (range.from || range.to) ? (
+        {range ? (
           <button
             className="border border-primary-800 py-2 px-4 text-sm font-semibold"
             onClick={resetRange}

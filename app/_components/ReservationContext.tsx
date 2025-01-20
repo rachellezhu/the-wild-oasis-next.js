@@ -29,6 +29,8 @@ export default function ReservationProvider({
     setRange(initialState);
   }
 
+  if (range?.from && !range.to) setRange({ ...range, to: range.from });
+
   return (
     <ReservationContext.Provider value={{ range, setRange, resetRange }}>
       {children}
