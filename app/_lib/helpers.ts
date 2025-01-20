@@ -1,10 +1,13 @@
 import { formatDistance, isWithinInterval, parseISO } from "date-fns";
 
 export function isAlreadyBooked(
-  range: { from: number | null; to: number | null },
+  range: {
+    from: number | Date | null | undefined;
+    to: number | Date | null | undefined;
+  },
   datesArr: Date[]
 ): boolean {
-  if (range.from === null || range.to === null) return false;
+  if (!range.from || !range.to) return false;
 
   return datesArr.some((date) =>
     isWithinInterval(date, { start: range.from!, end: range.to! })
