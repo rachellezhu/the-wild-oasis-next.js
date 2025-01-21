@@ -14,7 +14,15 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createReservation(
-  bookingData: TUpdateBookingFields,
+  bookingData: Pick<
+    TUpdateBookingFields,
+    | "start_date"
+    | "end_date"
+    | "cabin_id"
+    | "num_nights"
+    | "num_guests"
+    | "cabin_price"
+  >,
   formData: FormData
 ) {
   const session = await checkAuth();
