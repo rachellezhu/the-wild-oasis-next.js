@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <div className="text-center space-y-6 mt-4">
@@ -5,12 +7,12 @@ export default function Page() {
         Thank you for your reservation!
       </h1>
 
-      <a
+      <Link
         href="/account/reservations"
         className="underline text-xl text-accent-500 inline-block"
       >
         Manage your reservations &rarr;
-      </a>
+      </Link>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import UpdateButton from "@/app/_components/UpdateButton";
+import SubmitButton from "@/app/_components/SubmitButton";
 import { updateReservation } from "@/app/_lib/actions";
 import { getBooking } from "@/app/_lib/booking-services";
 
@@ -72,7 +72,9 @@ export default async function Page({
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <UpdateButton>Update reservation</UpdateButton>
+          <SubmitButton pendingLabel="Updating...">
+            Update reservation
+          </SubmitButton>
         </div>
       </form>
     </div>

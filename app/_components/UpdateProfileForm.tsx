@@ -1,6 +1,6 @@
 "use client";
 
-import UpdateButton from "@/app/_components/UpdateButton";
+import SubmitButton from "@/app/_components/SubmitButton";
 import { updateGuestProfile } from "@/app/_lib/actions";
 import { TGuest } from "@/app/_types/guest-type";
 import Image from "next/image";
@@ -70,7 +70,7 @@ export default function UpdateProfileForm({
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <UpdateButton>Update profile</UpdateButton>
+        <SubmitButton pendingLabel="Updating...">Update profile</SubmitButton>
       </div>
     </form>
   );
