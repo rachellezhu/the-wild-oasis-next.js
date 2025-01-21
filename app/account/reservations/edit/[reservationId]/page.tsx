@@ -1,5 +1,5 @@
 import SubmitButton from "@/app/_components/SubmitButton";
-import { updateReservation } from "@/app/_lib/actions";
+import { updateReservation } from "@/app/_lib/actions/reservation-actions";
 import { getBooking } from "@/app/_lib/booking-services";
 
 export async function generateMetadata({

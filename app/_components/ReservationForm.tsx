@@ -2,8 +2,8 @@
 
 import SubmitButton from "@/app/_components/SubmitButton";
 import { useReservation } from "@/app/_hooks/useReservation";
-import { createReservation } from "@/app/_lib/actions";
 import { isAlreadyBooked } from "@/app/_lib/helpers";
+import { createReservation } from "@/app/_lib/actions/reservation-actions";
 import { TCabin } from "@/app/_types/cabin-type";
 import { differenceInDays } from "date-fns";
 import { Session } from "next-auth";
@@ -59,8 +59,8 @@ export default function ReservationForm({
       <form
         action={async (formData: FormData) => {
           await createBookingWithData(formData);
-          resetRange();
         }}
+        onSubmit={resetRange}
         className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
       >
         <div className="space-y-2">

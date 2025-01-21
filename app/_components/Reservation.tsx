@@ -3,7 +3,7 @@ import ReservationForm from "@/app/_components/ReservationForm";
 import { getSettings } from "@/app/_lib/setting-services";
 import { getBookedDatesByCabinId } from "@/app/_lib/booking-services";
 import { TCabin } from "@/app/_types/cabin-type";
-import { auth } from "@/app/_lib/auth";
+import { auth } from "@/app/_lib/auth/auth";
 import LoginMessage from "@/app/_components/LoginMessage";
 
 export default async function Reservation({ cabin }: { cabin: TCabin }) {

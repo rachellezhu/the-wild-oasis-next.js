@@ -1,7 +1,7 @@
 "use client";
 
 import SubmitButton from "@/app/_components/SubmitButton";
-import { updateGuestProfile } from "@/app/_lib/actions";
+import { updateGuestProfile } from "@/app/_lib/actions/account-actions";
 import { TGuest } from "@/app/_types/guest-type";
 import Image from "next/image";
 

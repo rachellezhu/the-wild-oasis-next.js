@@ -1,5 +1,5 @@
 import ReservationList from "@/app/_components/ReservationList";
-import { auth } from "@/app/_lib/auth";
+import { auth } from "@/app/_lib/auth/auth";
 import { getBookingsByGuestId } from "@/app/_lib/booking-services";
 import Link from "next/link";
 

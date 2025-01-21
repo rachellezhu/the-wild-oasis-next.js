@@ -1,4 +1,4 @@
-import { signInAction } from "@/app/_lib/actions";
+import { signInAction } from "@/app/_lib/actions/sign-in-out";
 import Image from "next/image";
 
 export default function SignInButton() {

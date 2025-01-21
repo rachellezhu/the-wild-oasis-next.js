@@ -1,4 +1,4 @@
-import { singOutAction } from "@/app/_lib/actions";
+import { singOutAction } from "@/app/_lib/actions/sign-in-out";
 import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/solid";
 
 export default function SignOutButton() {

@@ -1,7 +1,7 @@
 "use client";
 
 import ReservationCard from "@/app/_components/ReservationCard";
-import { deleteReservation } from "@/app/_lib/actions";
+import { deleteReservation } from "@/app/_lib/actions/reservation-actions";
 import { TBookingsByGuest } from "@/app/_types/booking-type";
 import { useOptimistic } from "react";
 
