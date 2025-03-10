@@ -37,6 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Demo
 
-Click link below!
+Click link below! (Not responsive, open in the desktop)
 
 [https://the-wild-oasis-next-js-xi.vercel.app](https://the-wild-oasis-next-js-xi.vercel.app)
